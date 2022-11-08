@@ -321,6 +321,15 @@ handlers[Language.War_GlobalStatsResponse] = function(body) {
 	this.emit('warStats', mySides);
 };
 
+handlers[Language.Client2GCEconPreviewDataBlockResponse] = function(body) {
+	let proto = decodeProto(Schema.CMsgGC_Client2GCEconPreviewDataBlockResponse, body);
+	if (!proto.iteminfo) {
+		return;
+	}
+
+	this.emit('inspectItemInfo', proto.iteminfo);
+};
+
 function decodeProto(proto, encoded) {
 	if (ByteBuffer.isByteBuffer(encoded)) {
 		encoded = encoded.toBuffer();

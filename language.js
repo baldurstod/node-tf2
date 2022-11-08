@@ -289,6 +289,8 @@ module.exports = {
 	RemovePlayerFromLobby: 6301,
 	SetLobbySafeToLeave: 6302,
 	UpdatePeriodicEvent: 6400,
+	Client2GCEconPreviewDataBlockRequest: 6402,
+	Client2GCEconPreviewDataBlockResponse: 6403,
 	ClientVerificationChallenge: 6500,
 	ClientVerificationChallengeResponse: 6501,
 	ClientVerificationVerboseResponse: 6502,

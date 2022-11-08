@@ -298,6 +298,27 @@ TeamFortress2.prototype.requestWarStats = function(warID, callback) {
 	}
 };
 
+TeamFortress2.prototype.inspectItem = async function(paramM, paramA, paramD) {
+	let msg = {
+		"param_a": paramA,
+		"param_d": paramD,
+		"param_s": 0,
+		"param_m": 0
+	};
+	try {
+		let sid = new SteamID(paramM);
+		if (!sid.isValid() || sid.universe != SteamID.Universe.PUBLIC || sid.type != SteamID.Type.INDIVIDUAL || sid.instance != SteamID.Instance.DESKTOP) {
+			throw 0;
+		}
+		// it's a valid steamid
+		msg.param_s = paramM;
+	} catch (e) {
+		msg.param_m = paramM;
+	}
+
+	this._send(Language.Client2GCEconPreviewDataBlockRequest, Schema.CMsgGC_Client2GCEconPreviewDataBlockRequest, msg);
+};
+
 TeamFortress2.prototype._handlers = {};
 
 function coerceToLong(num, signed) {
